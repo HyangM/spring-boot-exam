@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cos.springboot.repository.BaseballRepository">
+
+  <select id="findTeamAll" resultType="com.cos.springboot.model.BaseballTeam">
+    select * from team order by id
+  </select>
+    
+  <select id="findByTeam" resultType="com.cos.springboot.model.BaseballPlayer">
+    select * from player where teamid = #{teamid} order by id
+  </select>
+    
+  <select id="findByTP" resultType="com.cos.springboot.dto.BaseballTPDto">
+    select teamid, name, teamname from player left outer join team on team.id = player.teamid 
+     where teamid = #{teamid} 
+       and player.id = #{userid}
+  </select>
+  
+</mapper>
